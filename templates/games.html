@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список ігор</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { width: 80%; margin: auto; }
+        .filters { margin-bottom: 20px; }
+        .filters a { text-decoration: none; color: white; padding: 10px 20px; margin: 5px; background-color: #007BFF; border-radius: 5px; }
+        .filters a:hover { background-color: #0056b3; }
+        .game-list { display: flex; flex-wrap: wrap; justify-content: center; }
+        .game { border: 1px solid #ddd; border-radius: 5px; padding: 10px; margin: 10px; width: 250px; text-align: center; }
+        .game img { width: 100%; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Список ігор</h1>
+
+        <!-- Фільтри -->
+        <div class="filters">
+            <a href="/games">Усі ігри</a>
+            <a href="/games?category=RPG">Популярні</a>
+            <a href="/games?category=Shooter">Класика жанру</a>
+            <a href="/games?category=Adventure">Новинки</a>
+        </div>
+
+        <!-- Список ігор -->
+        <ul class="game-list">
+            {% for game in games %}
+            <li class="game">
+                <img src="{{ game.image_url }}" alt="{{ game.title }}">
+                <h2>{{ game.title }}</h2>
+                <p>Жанр: {{ game.genre }}</p>
+                <p>Ціна: {{ game.price }} грн</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Кнопка додавання нової гри -->
+        <a href="/add_game">Додати нову гру</a>
+    </div>
+</body>
+</html>
